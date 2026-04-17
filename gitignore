@@ -1,0 +1,8 @@
+build/
+devel/
+install/
+*.o
+*.so
+*.pyc
+.vscode/
+*.log
