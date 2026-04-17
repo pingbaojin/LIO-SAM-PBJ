@@ -1,0 +1,11 @@
+build/
+devel/
+install/
+cmake-build/
+*.o
+*.so
+*.pyc
+*.exe
+.vscode/
+.idea/
+*.log
