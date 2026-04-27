@@ -2,9 +2,12 @@ lio_sam:
 
   # Topics
   pointCloudTopic: "/lslidar_point_cloud"               # Point cloud data
+  # pointCloudTopic: "/sim_coop_points"
   imuTopic: "/mems_radyaw"                         # IMU data
   odomTopic: "odometry/imu"                   # IMU pre-preintegration odometry, same frequency as IMU
-  gpsTopic: "odometry/gps"                   # GPS odometry topic from navsat, see module_navsat.launch file
+
+  gpsTopic: "odometry/gps"                   # GPS odometry topic from navsat, see module_navsat.launch file 不用gnss时，自己指定一个不存在的话题
+  # gpsTopic: "none"
 
   # Frames
   lidarFrame: "laser_link"
@@ -14,12 +17,12 @@ lio_sam:
 
   # GPS Settings
   useImuHeadingInitialization: true           # if using GPS data, set to "true"
-  useGpsElevation: true                      # if GPS elevation is bad, set to "false"
+  useGpsElevation: false                      # if GPS elevation is bad, set to "false" GNSS高程不可信时，设置为false
   gpsCovThreshold: 2.0                        # m^2, threshold for using GPS data
   poseCovThreshold: 25.0                      # m^2, threshold for using GPS data
   
   # Export settings
-  savePCD: true                              # https://github.com/TixiaoShan/LIO-SAM/issues/3
+  savePCD: false                              # https://github.com/TixiaoShan/LIO-SAM/issues/3
   savePCDDirectory: "../docker_ws/ubuntu20_04/data/HIT/2025-04-18-car1"        # in your home folder, starts and ends with "/". Warning: the code deletes "LOAM" folder then recreates it. See "mapOptimization" for implementation
 
   # Sensor Settings
@@ -115,7 +118,7 @@ ekf_gps:
   map_frame: map
   odom_frame: odom
   base_link_frame: base_link
-  world_frame: odom
+  world_frame: odom   # odom 或 map（取决于是否融合GNSS）
 
   frequency: 50
   two_d_mode: false

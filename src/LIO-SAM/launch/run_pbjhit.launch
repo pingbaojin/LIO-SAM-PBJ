@@ -12,14 +12,17 @@
     <include file="$(find lio_sam)/launch/include/module_robot_state_publisher.launch" />
 
     <!--- Run Navsat -->
-    <include file="$(find lio_sam)/launch/include/module_navsat.launch" />
+    <!-- <include file="$(find lio_sam)/launch/include/module_navsat.launch" /> -->
 
     <!--- Run Rviz-->
     <include file="$(find lio_sam)/launch/include/module_rviz.launch" />
 
-    <!-- 正确的：发布 base_link 到 laser_link 的静态TF -->
+    <!-- 正确的：发布 base_link 到 laser_link 的静态TF
     <node pkg="tf2_ros" type="static_transform_publisher" name="base_to_laser"
-        args="0 0 0 0 0 0 base_link laser_link" />
+        args="0 0 0 0 0 0 base_link laser_link" /> -->
+
+    <node pkg="tf2_ros" type="static_transform_publisher" name="base_to_laser"
+      args="-0.013638 -0.068474 0.143785  -0.00644 0.00425 -0.00287 0.99997  base_link laser_link" />
 
 
 </launch>
